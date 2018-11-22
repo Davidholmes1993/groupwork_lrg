@@ -1,0 +1,39 @@
+import argparse
+parser = argparse.ArgumentParser()
+parser.add_argument('filename')
+args = parser.parse_args()
+
+
+def correct_filename(file):
+  assert(file)==("*.xml")
+print ("The filename must be a .xml file")
+
+import xml.etree.ElementTree as ET
+
+
+with open(args.filename) as file:
+  tree = ET.parse(file)
+  root = tree.getroot()
+  for lrg_locus in root.iter('lrg_locus'):
+      gene = lrg_locus.text
+
+
+f = open("%s.bed" % (gene),"w+")
+f.write("Gene name:" + gene + "\n")
+for id in root.iter('id'):
+  transcript_name= id.text
+
+
+  for exon in root.findall('.//fixed_annotation/transcript/exon'):
+    label = exon.get('label')
+    coordinates = exon.find('coordinates').attrib
+    coord_system = coordinates.get("coord_system")
+    start = coordinates.get('start')
+    end = coordinates.get('end')
+    if coord_system == transcript_name:
+      f.write(coord_system + " Exon: " + label + " Start: " + start + " End: " + end + "\n")
+
+
+f.close()
+
+print("Your results are found in the %s.bed file" % (gene))
