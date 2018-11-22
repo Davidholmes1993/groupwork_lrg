@@ -23,15 +23,21 @@ f = open("%s.bed" % (gene),"w+")
 for id in root.iter('id'):
     transcript_name= id.text
 
+exon_number = []
+
 for exon in root.findall('.//fixed_annotation/transcript/exon'):
     label = exon.get('label')
+    exon_number.append(label)
     f.write("Exon: " + label + "\n")
 
-for coordinates in root.findall('.//fixed_annotation/transcript/exon/coordinates'):
-    coord_system = coordinates.get('coord_system')
-    start = coordinates.get('start')
-    end = coordinates.get('end')
-    if coord_system == transcript_name:
-        f.write(coord_system + " Start: " + start + " End: " + end + "\n")
+print(exon_number)
+
+for x in exon_number:
+    for coordinates in root.findall('.//fixed_annotation/transcript/exon/coordinates'):
+        coord_system = coordinates.get('coord_system')
+        start = coordinates.get('start')
+        end = coordinates.get('end')
+        if coord_system == transcript_name:
+            f.write(x + " " + coord_system + " Start: " + start + " End: " + end + "\n")
 
 f.close() 
