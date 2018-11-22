@@ -15,7 +15,8 @@ with open(args.filename) as file:
     tree = ET.parse(file)
     root = tree.getroot()
     for lrg_locus in root.iter('lrg_locus'):
-        print (lrg_locus.text)
+        gene = lrg_locus.text
+        print(gene)
 
 for id in root.iter('id'):
     transcript_name= id.text
@@ -30,3 +31,9 @@ for coordinates in root.findall('.//fixed_annotation/transcript/exon/coordinates
     end = coordinates.get('end')
     if coord_system == transcript_name:
         print(coord_system, "Start:", start, "End:", end)
+
+f = open("%s.bed" % (gene),"w+")
+
+f.write("Exon:" + label)
+
+f.close() 
