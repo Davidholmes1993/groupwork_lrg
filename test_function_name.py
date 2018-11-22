@@ -22,7 +22,7 @@ for id in root.iter('id'):
 
 for exon in root.findall('.//fixed_annotation/transcript/exon'):
     label = exon.get('label')
-    print(label)
+    print("Exon:", label)
 
 for coordinates in root.findall('.//fixed_annotation/transcript/exon/coordinates'):
     coord_system = coordinates.get('coord_system')
