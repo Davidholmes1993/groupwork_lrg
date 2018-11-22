@@ -1,1 +1,19 @@
-Update this with instructions
+Download our repository from Github here: ?????
+
+
+For the gene you want to investigate on https://www.lrg-sequence.org/ ,
+download the .xml file you need and save this into the folder for the
+repository from Github.
+
+On your command line, type python test_function_name.py as well as the name of
+the LRG file that you have downloaded and saved with a space in between the
+program and filename.
+For example if you downloaded LRG_1,
+type into the command line:
+python test_function_name.py LRG_1.xml
+
+You will receive a message for the name of the file where your results
+are stored, which will be found in the repository folder.
+Open this file to see the information about the gene name, LRG number,
+the exons and the coordinates where the exons start and end
+in the LRG file.
