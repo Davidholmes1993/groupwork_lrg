@@ -17,4 +17,9 @@ with open(args.filename) as file:
     for lrg_locus in root.iter('lrg_locus'):
         print (lrg_locus.text)
 
-
+for coordinates in root.findall('.//other_exon_naming/exon/coordinates'):
+    coord_system = coordinates.get('coord_system')
+    start = coordinates.get('start')
+    end = coordinates.get('end')
+    print(coord_system, start, end)
+   
