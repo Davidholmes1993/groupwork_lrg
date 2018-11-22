@@ -18,7 +18,7 @@ with open(args.filename) as file:
         gene = lrg_locus.text
 
 f = open("%s.bed" % (gene),"w+")
-
+f.write("Gene name:" + gene + "\n")
 for id in root.iter('id'):
     transcript_name= id.text
 
