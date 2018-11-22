@@ -20,9 +20,13 @@ with open(args.filename) as file:
 for id in root.iter('id'):
     transcript_name= id.text
 
+for exon in root.findall('.//fixed_annotation/transcript/exon'):
+    label = exon.get('label')
+    print(label)
+
 for coordinates in root.findall('.//fixed_annotation/transcript/exon/coordinates'):
     coord_system = coordinates.get('coord_system')
     start = coordinates.get('start')
     end = coordinates.get('end')
     if coord_system == transcript_name:
-        print(coord_system, start, end)
+        print(coord_system, "Start:", start, "End:", end)
