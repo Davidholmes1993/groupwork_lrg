@@ -36,4 +36,6 @@ for exon in root.findall('.//fixed_annotation/transcript/exon'):
         f.write(coord_system + " Exon: " + label + " Start: " + start + " End: " + end + "\n")
 
 
-f.close() 
+f.close()
+
+print("Your results are found in the %s.bed file" % (gene))
