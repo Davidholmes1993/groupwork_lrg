@@ -16,28 +16,24 @@ with open(args.filename) as file:
     root = tree.getroot()
     for lrg_locus in root.iter('lrg_locus'):
         gene = lrg_locus.text
-        print(gene)
 
 f = open("%s.bed" % (gene),"w+")
 
 for id in root.iter('id'):
     transcript_name= id.text
 
-exon_number = []
+#for exon in root.findall('.//fixed_annotation/transcript/exon'):
+ #   label = exon.get('label')
+  #  f.write("Exon: " + label + "\n")
 
 for exon in root.findall('.//fixed_annotation/transcript/exon'):
     label = exon.get('label')
-    exon_number.append(label)
-    f.write("Exon: " + label + "\n")
+    coordinates = exon.find('coordinates').attrib
+    coord_system = coordinates.get("coord_system")
+    start = coordinates.get('start')
+    end = coordinates.get('end')
+    if coord_system == transcript_name:
+        f.write(coord_system + " Exon: " + label + " Start: " + start + " End: " + end + "\n")
 
-print(exon_number)
-
-for x in exon_number:
-    for coordinates in root.findall('.//fixed_annotation/transcript/exon/coordinates'):
-        coord_system = coordinates.get('coord_system')
-        start = coordinates.get('start')
-        end = coordinates.get('end')
-        if coord_system == transcript_name:
-            f.write(x + " " + coord_system + " Start: " + start + " End: " + end + "\n")
 
 f.close() 
