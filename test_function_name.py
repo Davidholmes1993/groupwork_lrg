@@ -9,7 +9,7 @@ parser.add_argument('filename')
 args = parser.parse_args()
 with open(args.filename) as file:
     """
-    Searches the whole xml file for the root called lrg_locus and prints the text in that 
+    Searches the whole xml file for the root called lrg_locus and prints the text in that
     line, which is the HGNC gene name
     """
     tree = ET.parse(file)
@@ -17,9 +17,12 @@ with open(args.filename) as file:
     for lrg_locus in root.iter('lrg_locus'):
         print (lrg_locus.text)
 
-for coordinates in root.findall('.//other_exon_naming/exon/coordinates'):
+for id in root.iter('id'):
+    transcript_name= id.text
+
+for coordinates in root.findall('.//fixed_annotation/transcript/exon/coordinates'):
     coord_system = coordinates.get('coord_system')
     start = coordinates.get('start')
     end = coordinates.get('end')
-    print(coord_system, start, end)
-   
+    if coord_system == transcript_name:
+        print(coord_system, start, end)
