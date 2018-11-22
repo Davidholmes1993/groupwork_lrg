@@ -18,22 +18,20 @@ with open(args.filename) as file:
         gene = lrg_locus.text
         print(gene)
 
+f = open("%s.bed" % (gene),"w+")
+
 for id in root.iter('id'):
     transcript_name= id.text
 
 for exon in root.findall('.//fixed_annotation/transcript/exon'):
     label = exon.get('label')
-    print("Exon:", label)
+    f.write("Exon: " + label + "\n")
 
 for coordinates in root.findall('.//fixed_annotation/transcript/exon/coordinates'):
     coord_system = coordinates.get('coord_system')
     start = coordinates.get('start')
     end = coordinates.get('end')
     if coord_system == transcript_name:
-        print(coord_system, "Start:", start, "End:", end)
-
-f = open("%s.bed" % (gene),"w+")
-
-f.write("Exon:" + label)
+        f.write(coord_system + " Start: " + start + " End: " + end + "\n")
 
 f.close() 
