@@ -7,6 +7,17 @@ import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument('filename')
 args = parser.parse_args()
+
+# Puts args into string format so that file extension can be tested
+name_of_file = str(args)
+
+# If statement that tests whether or not the the file type is .xml. If the file is not correct it will let the user know and terminate the programme 
+if name_of_file.endswith(".xml')"):
+    pass
+else:
+    print("ERROR: Invalid file type. File must have extension .xml")
+    exit()
+
 with open(args.filename) as file:
 
 
