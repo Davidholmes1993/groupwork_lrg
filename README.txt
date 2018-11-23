@@ -1,9 +1,9 @@
-Download our repository from Github here: ?????
-
+Download our repository from Github here:
+https://github.com/Davidholmes1993/groupwork_lrg
 
 For the gene you want to investigate on https://www.lrg-sequence.org/ ,
-download the .xml file you need and save this into the folder for the
-repository from Github.
+download the .xml file for that gene and save this into the same folder from
+the repository from Github.
 
 On your command line, type python exon_coordinates_finder.py
 as well as the name of the LRG file that you have downloaded and saved
