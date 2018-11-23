@@ -4,11 +4,20 @@ parser.add_argument('filename')
 args = parser.parse_args()
 
 
-def correct_filename(file):
-  assert(file)==("*.xml")
-print ("The filename must be a .xml file")
+#def correct_filename(file):
+#  assert(file)==(*.xml)
+#print ("The filename must be a .xml file")
 
 import xml.etree.ElementTree as ET
+
+
+try:
+    f = open(args.filename)
+    for line in f:
+      print(line)
+except FileNotFoundError:
+  print("ERROR: This file does not exist in this directory" + "\n"  + "Please make sure your file is saved in groupwork_lrg directory")
+  exit()
 
 
 with open(args.filename) as file:
