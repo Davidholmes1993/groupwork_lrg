@@ -9,10 +9,21 @@ parser = argparse.ArgumentParser()
 parser.add_argument('filename')
 args = parser.parse_args()
 
+# A test to check if the file is in the correct directory
+#If not it will tell the user and terminate the program
+try:
+    f = open(args.filename)
+    for line in f:
+      print(line)
+except FileNotFoundError:
+  print("ERROR: This file does not exist in this directory" + "\n"  + "Please make sure your file is saved in groupwork_lrg directory")
+  exit()
+
+
 # Puts args into string format so that file extension can be tested
 name_of_file = str(args)
 
-# If statement that tests whether or not the the file type is .xml. If the file is not correct it will let the user know and terminate the programme 
+# If statement that tests whether or not the the file type is .xml. If the file is not correct it will let the user know and terminate the programme
 if name_of_file.endswith(".xml')"):
     pass
 else:
