@@ -21,3 +21,21 @@ in the LRG file.
 Please see in the git repository for examples of .bed files from different
 genes to see what is the correct format for the output file of your chosen
 LRG xml file.
+
+When you try and run our program with your chosen LRG, you may receive
+either of two messages:
+
+ERROR: This file does not exist in this directory
+Please make sure your file is saved in groupwork_lrg directory
+
+This error message comes up if you have not saved you LRG.xml file in the same
+directory as the one from the Github directory. Please try to move your
+chosen LRG.xml file into the groupwork_lrg folder.
+
+
+ERROR: Invalid file type. File must have extension .xml
+
+This error message comes up if the file that you are trying to use the program
+with is not a .xml file, for example if you try and load a .fasta file instead.
+Please download the .xml file for your chosen LRG and save it in the same
+directory as the one from Github named groupwork_lrg
