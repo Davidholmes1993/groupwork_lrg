@@ -17,3 +17,7 @@ are stored in a .bed file, which will be found in the repository folder.
 Open this file to see the information about the gene name, LRG number,
 the exons and the coordinates where the exons start and end
 in the LRG file.
+
+Please see in the git repository for examples of .bed files from different
+genes to see what is the correct format for the output file of your chosen
+LRG xml file.
