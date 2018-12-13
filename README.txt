@@ -1,5 +1,5 @@
 To download and use our repository and run our exon coordinates finder program, 
-type git init into your command line, and then type 
+type: git init into your command line, and then type: 
 git clone https://github.com/Davidholmes1993/groupwork_lrg.git
 
 For the gene you want to investigate on https://www.lrg-sequence.org/ ,
