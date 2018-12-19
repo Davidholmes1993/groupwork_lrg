@@ -29,7 +29,7 @@ either of two messages:
 ERROR: This file does not exist in this directory
 Please make sure your file is saved in groupwork_lrg directory
 
-This error message comes up if you have not saved you LRG.xml file in the same
+This error message comes up if you have not saved your LRG.xml file in the same
 directory as the one from the Github directory. Please try to move your
 chosen LRG.xml file into the groupwork_lrg folder.
 
