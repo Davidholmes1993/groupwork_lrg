@@ -1,9 +1,10 @@
-Download our repository from Github here:
-https://github.com/Davidholmes1993/groupwork_lrg
+To download and use our repository and run our exon coordinates finder program, 
+type: git init into your command line, and then type: 
+git clone https://github.com/Davidholmes1993/groupwork_lrg.git
 
 For the gene you want to investigate on https://www.lrg-sequence.org/ ,
 download the .xml file for that gene and save this into the same folder from
-the repository from Github.
+the repository from Github, the groupwork_lrg folder.
 
 On your command line, type python exon_coordinates_finder.py
 as well as the name of the LRG file that you have downloaded and saved
@@ -28,7 +29,7 @@ either of two messages:
 ERROR: This file does not exist in this directory
 Please make sure your file is saved in groupwork_lrg directory
 
-This error message comes up if you have not saved you LRG.xml file in the same
+This error message comes up if you have not saved your LRG.xml file in the same
 directory as the one from the Github directory. Please try to move your
 chosen LRG.xml file into the groupwork_lrg folder.
 
