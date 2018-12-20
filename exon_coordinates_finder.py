@@ -75,11 +75,13 @@ for exon in root.findall('.//fixed_annotation/transcript/exon'):
     if strand == '1':
         final_genomic_start = str(int_genomic_start -1 + int_start)
         final_genomic_end = str(int_genomic_start -1 + int_end)
+        strand_definition = "+"
     elif strand =='-1':
         final_genomic_start = str(int_genomic_end +1 - int_start)
         final_genomic_end = str(int_genomic_end +1 - int_end)
+        strand_definition = "-"
     if coord_system == transcript_name:
-        f.write(chromosome_number + "\t" + final_genomic_start + "\t" + final_genomic_end + "\t" + label + "\t" + strand + "\n")
+        f.write(chromosome_number + "\t" + final_genomic_start + "\t" + final_genomic_end + "\t" + label + "\t" + strand_definition + "\n")
 
 # The .bed file needs to be closed after creating it
 f.close()
