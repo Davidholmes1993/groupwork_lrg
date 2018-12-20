@@ -40,9 +40,26 @@ with open(args.filename) as file:
 # This specifies the default gene transcript in the transcript_name=id
 # And creates a .bed file by using the gene name as the prefix
 f = open("%s.bed" % (gene),"w+")
-f.write("Gene name:" + gene + "\n")
+f.write("Gene name:" + gene + "\n" + "Chrom" + "\t" "ChromStart" + "\t" + "ChromEnd" + "\t" "Exon" + "\t" + "Strand" + "\n")
 for id in root.iter('id'):
     transcript_name= id.text
+
+
+# This will create the genomic coordinates for each exon start and end, only for
+# the genome build 37, and only for a forward strand
+# need to do the addition of the integers before the print line
+for mapping in root.findall('.//updatable_annotation/annotation_set/mapping'):
+    genome_build = mapping.get("coord_system")
+    mapping_span = mapping.find('mapping_span').attrib
+    if genome_build == "GRCh37.p13":
+        strand = mapping_span.get('strand')
+        chromosome_number = mapping.get("other_name")
+        int_chromosome_number=int(chromosome_number)
+        chromosome_start = mapping.get("other_start")
+        int_chromosome_start=int(chromosome_start)
+        chromosome_end = mapping.get("other_end")
+        int_chromosome_end=int(chromosome_end)
+
 
 # This loop identifies the LRG number as coord_system,
 # The exon number is identified as the label
@@ -52,10 +69,19 @@ for exon in root.findall('.//fixed_annotation/transcript/exon'):
     label = exon.get('label')
     coordinates = exon.find('coordinates').attrib
     coord_system = coordinates.get("coord_system")
+    #strand = coordinates.get('strand')
     start = coordinates.get('start')
+    int_start = int(start)
     end = coordinates.get('end')
+    int_end = int(end)
+    if strand == '1':
+        final_chromosome_start = str(int_chromosome_start -1 + int_start)
+        final_chromosome_end = str(int_chromosome_start -1 + int_end)
+    elif strand =='-1':
+        final_chromosome_start = str(int_chromosome_end +1 - int_start)
+        final_chromosome_end = str(int_chromosome_end +1 - int_end)
     if coord_system == transcript_name:
-        f.write(coord_system + " Exon: " + label + " Start: " + start + " End: " + end + "\n")
+        f.write(chromosome_number + "\t" + final_chromosome_start + "\t" + final_chromosome_end + "\t" + label + "\t" + strand + "\n")
 
 # The .bed file needs to be closed after creating it
 f.close()
