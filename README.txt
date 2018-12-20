@@ -15,9 +15,10 @@ python exon_coordinates_finder.py LRG_1.xml
 
 You will receive a message for the name of the file where your results
 are stored in a .bed file, which will be found in the repository folder.
-Open this file to see the information about the gene name, LRG number,
-the exons and the coordinates where the exons start and end
-in the LRG file.
+Open this file to see the information about the gene in the LRG file in a 
+tab delimited format showing the chromosome, genomic coordinates for the 
+start and end coordinates of each exon, the exon number, and if the strand is 
+forward or reverse.
 
 Please see in the git repository for examples of .bed files from different
 genes to see what is the correct format for the output file of your chosen
