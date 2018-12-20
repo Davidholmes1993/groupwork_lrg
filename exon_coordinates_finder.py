@@ -54,7 +54,6 @@ for mapping in root.findall('.//updatable_annotation/annotation_set/mapping'):
     if genome_build == "GRCh37.p13":
         strand = mapping_span.get('strand')
         chromosome_number = mapping.get("other_name")
-        int_chromosome_number=int(chromosome_number)
         genomic_start = mapping.get("other_start")
         int_genomic_start=int(genomic_start)
         genomic_end = mapping.get("other_end")
