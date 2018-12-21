@@ -1,15 +1,15 @@
 <h1>LRG parser</h1>
 <h6>An LRG parser python program created by David Holmes and Maria Lock for the BIOL68400 Programming group work with the University of Manchester</h6>
 <h2>Purpose</h2>
-A python program to parse and XML file and output into a bed file the chromosome number, the start and end genomic coordinates for each exon, the exon number and if it is a forward or reverse strand.
+A python program to parse an XML file and output into a bed file the chromosome number, the start and end genomic coordinates for each exon, the exon number and if it is a forward or reverse strand.
 
 
 
 <h2>Instructions:</h2>
 
 To download and use our repository and run our exon coordinates finder program, 
-type: git init into your command line, and then type: 
-git clone https://github.com/Davidholmes1993/groupwork_lrg.git
+type: `git init` into your command line, and then type: 
+`git clone https://github.com/Davidholmes1993/groupwork_lrg.git`
 
 For the gene you want to investigate on https://www.lrg-sequence.org/ ,
 download the .xml file for that gene and save this into the same folder from
@@ -20,7 +20,7 @@ as well as the name of the LRG file that you have downloaded and saved
 with a space in between the program and filename.
 For example, to analyse LRG_1 type into the command line:
 
-python exon_coordinates_finder.py LRG_1.xml
+`python exon_coordinates_finder.py LRG_1.xml`
 
 You will receive a message for the name of the file where your results
 are stored in a .bed file, which will be found in the repository folder.
