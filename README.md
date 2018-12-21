@@ -1,4 +1,4 @@
-#Instructions:#
+<h1>Instructions:</h1>
 
 To download and use our repository and run our exon coordinates finder program, 
 type: git init into your command line, and then type: 
