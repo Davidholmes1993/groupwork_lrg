@@ -1,3 +1,5 @@
+#Instructions:
+
 To download and use our repository and run our exon coordinates finder program, 
 type: git init into your command line, and then type: 
 git clone https://github.com/Davidholmes1993/groupwork_lrg.git
@@ -10,6 +12,7 @@ When in the repository, on your command line, type python exon_coordinates_finde
 as well as the name of the LRG file that you have downloaded and saved
 with a space in between the program and filename.
 For example, to analyse LRG_1 type into the command line:
+
 python exon_coordinates_finder.py LRG_1.xml
 
 You will receive a message for the name of the file where your results
