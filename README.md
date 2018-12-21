@@ -1,4 +1,11 @@
-<h1>Instructions:</h1>
+<h1>LRG parser</h1>
+<h6>An LRG parser python program created by David Holmes and Maria Lock for the BIOL68400 Programming group work with the University of Manchester</h6>
+<h2>Purpose</h2>
+A python program to parse and XML file and output into a bed file the chromosome number, the start and end genomic coordinates for each exon, the exon number and if it is a forward or reverse strand.
+
+
+
+<h2>Instructions:</h2>
 
 To download and use our repository and run our exon coordinates finder program, 
 type: git init into your command line, and then type: 
