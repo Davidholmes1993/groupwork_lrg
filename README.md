@@ -54,6 +54,7 @@ directory as the one from Github named groupwork_lrg
 
 <h2>Example output</h2>
 ```
+
 Chrom   ChromStart      ChromEnd        Exon    Strand
 15      25650653        25650608        1       -
 15      25620910        25620612        2       -
@@ -65,5 +66,6 @@ Chrom   ChromStart      ChromEnd        Exon    Strand
 15      25599573        25599500        8       -
 15      25585375        25585232        9       -
 15      25584404        25582396        10      -
+
 ```
 
