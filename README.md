@@ -5,7 +5,8 @@ A python program to parse an XML file and output into a bed file the chromosome 
 
 <h2>Usage</h2> 
 Suitable for use with python 2 and python 3. Requires LRG xml file to be saved in the same local folder. See instructions below for detailed information
-Example: `python exon_coordinates_finder.py <<your LRG_*.xml file here>>`
+
+Example: `python exon_coordinates_finder.py <your LRG_*.xml file here>`
 <h2>Instructions</h2>
 
 To download and use our repository and run our exon coordinates finder program, 
@@ -53,8 +54,8 @@ Please download the .xml file for your chosen LRG and save it in the same
 directory as the one from Github named groupwork_lrg
 
 <h2>Example output</h2>
-```
 
+```
 Chrom   ChromStart      ChromEnd        Exon    Strand
 15      25650653        25650608        1       -
 15      25620910        25620612        2       -
