@@ -14,8 +14,8 @@ output_time = datetime.datetime.now().strftime("%y-%m-%d-%H-%M")
 try:
     f = open(args.filename)
 except FileNotFoundError:
-  print("ERROR: This file does not exist in this directory" + "\n"  + "Please make sure your file is saved in groupwork_lrg directory")
-  exit()
+    print("ERROR: This file does not exist in this directory" + "\n"  + "Please make sure your file is saved in groupwork_lrg directory")
+    exit()
 
 # Puts args into string format so that file extension can be tested
 name_of_file = str(args)
