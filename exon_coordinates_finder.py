@@ -7,6 +7,8 @@ parser = argparse.ArgumentParser()
 parser.add_argument('filename')
 args = parser.parse_args()
 
+import datetime
+output_time = datetime.datetime.now().strftime("%y-%m-%d-%H-%M")
 # A test to check if the file is in the correct directory
 #If not it will tell the user and terminate the program
 try:
@@ -37,10 +39,11 @@ with open(args.filename) as file:
 # This specifies the LRG number
 # And creates a .bed file by using the gene name as the prefix
 # At the top of the bed file the gene name and a header row is printed
-f = open("%s.bed" % (gene),"w+")
-f.write("Gene name:" + gene + "\n" + "Chrom" + "\t" "ChromStart" + "\t" + "ChromEnd" + "\t" "Exon" + "\t" + "Strand" + "\n")
 for id in root.iter('id'):
     lrg_number= id.text
+f = open("%s%s%s%s%s.bed" % (lrg_number,"_", gene, "_", output_time),"w+")
+f.write("Chrom" + "\t" "ChromStart" + "\t" + "ChromEnd" + "\t" "Exon" + "\t" + "Strand" + "\n")
+
 
 # This will find the genomic coordinates for the gene and converts them into integers to be used later on to
 # add or subtract the LRG coordinates integers in order to give the genomic corrdinates of the exon.
@@ -80,4 +83,4 @@ for exon in root.findall('.//fixed_annotation/transcript/exon'):
 f.close()
 
 # A message is created to show the user where to find their results
-print("Your results are found in the %s.bed file" % (gene))
+print("Your results are found in the %s%s%s%s%s.bed file" % (lrg_number,"_", gene, "_", output_time))
