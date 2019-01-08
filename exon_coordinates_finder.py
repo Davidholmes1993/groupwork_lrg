@@ -7,8 +7,10 @@ parser = argparse.ArgumentParser()
 parser.add_argument('filename')
 args = parser.parse_args()
 
+# import datetime to enable the LRG parser program to give the date and time in the output filename
 import datetime
 output_time = datetime.datetime.now().strftime("%y-%m-%d-%H-%M")
+
 # A test to check if the file is in the correct directory
 #If not it will tell the user and terminate the program
 try:
@@ -30,25 +32,25 @@ else:
 # This uses argparse to open the file that the user has inputted
 with open(args.filename) as file:
 
-# This defines the HGNC name for the gene for later use
+# This defines the HGNC name of the gene to be used in the output filename
     tree = ET.parse(file)
     root = tree.getroot()
     for lrg_locus in root.iter('lrg_locus'):
         gene = lrg_locus.text
 
-# This specifies the LRG number
-# And creates a .bed file by using the gene name as the prefix
-# At the top of the bed file the gene name and a header row is printed
+# This specifies the LRG number to be used in the output filename
+# And creates a .bed file with the filename of the lrg number, the gene and the date and time the file was created
+# A header row is created for the bed file to label each column
 for id in root.iter('id'):
     lrg_number= id.text
 f = open("%s%s%s%s%s.bed" % (lrg_number,"_", gene, "_", output_time),"w+")
 f.write("Chrom" + "\t" "ChromStart" + "\t" + "ChromEnd" + "\t" "Exon" + "\t" + "Strand" + "\n")
 
 
-# This will find the genomic coordinates for the gene and converts them into integers to be used later on to
-# add or subtract the LRG coordinates integers in order to give the genomic corrdinates of the exon.
-# The chromosome number is identified, and the strand is identified as forward or reverse
-# only for the genome build 37
+# This will find the genomic coordinates for the whole gene to be used later on to
+# add or subtract the LRG coordinates in order to give the genomic coordinates each exon.
+# The chromosome number is identified, and the strand is identified as forward or reverse strand.
+# The coordinates are found only for the genome build GRCh37.p13
 for mapping in root.findall('.//updatable_annotation/annotation_set/mapping'):
     genome_build = mapping.get("coord_system")
     mapping_span = mapping.find('mapping_span').attrib
@@ -82,5 +84,5 @@ for exon in root.findall('.//fixed_annotation/transcript/exon'):
 # The .bed file needs to be closed after creating it
 f.close()
 
-# A message is created to show the user where to find their results
+# A message is created to show the user where to find their results in the output file after the LRG parser program is finished.
 print("Your results are found in the %s%s%s%s%s.bed file" % (lrg_number,"_", gene, "_", output_time))
