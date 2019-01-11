@@ -48,7 +48,7 @@ f.write("Chrom" + "\t" "ChromStart" + "\t" + "ChromEnd" + "\t" "Exon" + "\t" + "
 
 
 # This will find the genomic coordinates for the whole gene to be used later on to
-# add or subtract the LRG coordinates in order to give the genomic coordinates each exon.
+# add or subtract the LRG coordinates in order to give the genomic coordinates of each exon.
 # The chromosome number is identified, and the strand is identified as forward or reverse strand.
 # The coordinates are found only for the genome build GRCh37.p13
 for mapping in root.findall('.//updatable_annotation/annotation_set/mapping'):
@@ -63,7 +63,7 @@ for mapping in root.findall('.//updatable_annotation/annotation_set/mapping'):
 # This loop identifies the transcript name and only uses the default transcript that matches the LRG name,
 # The exon number is identified
 # As well as the start and end genomic coordinates for each exon, depending on if it is a forward or reverse strand
-# by adding or subtracting them alongside the genomic coordinates of the gene
+# by adding or subtracting the LRG exon coordinates to/from the genomic coordinates of the whole gene
 for exon in root.findall('.//fixed_annotation/transcript/exon'):
     exon_number = exon.get('label')
     coordinates = exon.find('coordinates').attrib
