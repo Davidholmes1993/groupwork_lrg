@@ -1,1 +1,0 @@
-To find the exon coordinates of the exons in an lrg XML file using coding
