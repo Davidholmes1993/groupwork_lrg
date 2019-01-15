@@ -121,14 +121,10 @@ def make_bed(root, lrg_number, strand, chromosome_number, genomic_start, genomic
             f.write(chromosome_number + "\t" + final_genomic_start + "\t" + final_genomic_end + "\t" + exon_number + "\t" + strand_definition + "\n")
     return(f)
 
-# The .bed file needs to be closed after creating it
-f.close()
+#This function will close the bed file and print a message telling the user the name of their file
+def close_file(output_time, lrg_number, gene, f):
+    f.close()
+    message = "Your results are found in the %s%s%s%s%s.bed file" % (lrg_number,"_", gene, "_", output_time)
+    print(message)
+    return(message)
 
-# A message is created to show the user where to find their results in the output file after the LRG parser program is finished.
-print("Your results are found in the %s%s%s%s%s.bed file" % (lrg_number,"_", gene, "_", output_time))
-
-def main():
-    args = parse_lrg()
-
-if __name__ == '__main__':
-    main()
