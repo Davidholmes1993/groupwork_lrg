@@ -17,13 +17,14 @@ def time():
     output_time = datetime.datetime.now().strftime("%y-%m-%d-%H-%M")
     return(output_time)
 
-# A test to check if the file is in the correct directory
+#This function will test if the file is in the correct directory
 #If not it will tell the user and terminate the program
-try:
-    f = open(args.filename)
-except FileNotFoundError:
-    print("ERROR: This file does not exist in this directory" + "\n"  + "Please make sure your file is saved in groupwork_lrg directory")
-    exit()
+def check_file_present(args):
+    try:
+        f = open(args.filename)
+    except FileNotFoundError:
+        print("ERROR: This file does not exist in this directory" + "\n"  + "Please make sure your file is saved in groupwork_lrg directory")
+        exit()
 
 # Puts args into string format so that file extension can be tested
 name_of_file = str(args)
