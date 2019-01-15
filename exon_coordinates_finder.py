@@ -66,7 +66,7 @@ def choose_genome_build():
         raise ValueError('This build does not exist')
     return(build)
 
-# This will find the genomic coordinates for the whole gene to be used later on to
+#This function will find the genomic coordinates for the whole gene to be used later on to
 # add or subtract the LRG coordinates in order to give the genomic coordinates of each exon.
 # The chromosome number is identified, and the strand is identified as forward or reverse strand.
 # The coordinates are found for the genome build asked for by the user
@@ -91,11 +91,12 @@ def find_genomic_coord(root, build):
                 genomic_end = int(mapping.get("other_end"))
     return(strand, chromosome_number, genomic_start, genomic_end)
 
-# This creates a .bed file with the filename of the lrg number, the gene and the date and time the file was created
+#This function creates a .bed file with the filename of the lrg number, the gene and the date and time the file was created
 # A header row is created for the bed file to label each column
-f = open("%s%s%s%s%s.bed" % (lrg_number,"_", gene, "_", output_time),"w+")
-f.write("Chrom" + "\t" "ChromStart" + "\t" + "ChromEnd" + "\t" "Exon" + "\t" + "Strand" + "\n")
-
+def create_file(output_time, lrg_number, gene):
+    f = open("%s%s%s%s%s.bed" % (lrg_number,"_", gene, "_", output_time),"w+")
+    f.write("Chrom" + "\t" "ChromStart" + "\t" + "ChromEnd" + "\t" "Exon" + "\t" + "Strand" + "\n")
+    return(f)
 
 # This loop identifies the transcript name and only uses the default transcript that matches the LRG name,
 # The exon number is identified
