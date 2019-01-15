@@ -93,9 +93,9 @@ def find_genomic_coord(root, build):
 
 #This function creates a .bed file with the filename of the lrg number, the gene and the date and time the file was created
 # A header row is created for the bed file to label each column
-def create_file(output_time, lrg_number, gene):
-    f = open("%s%s%s%s%s.bed" % (lrg_number,"_", gene, "_", output_time),"w+")
-    f.write("Chrom" + "\t" "ChromStart" + "\t" + "ChromEnd" + "\t" "Exon" + "\t" + "Strand" + "\n")
+def create_file(output_time, lrg_number, gene, build):
+    f = open(f"{lrg_number}_{gene}_GRCh{build}_{output_time}.bed","w+")
+    f.write("Chrom" + "\t" "ChromStart" + "\t" + "ChromEnd" + "\"t" "Exon" + "\t" + "Strand" + "\n")
     return(f)
 
 # This function identifies the transcript name and only uses the default transcript that matches the LRG name,
@@ -122,9 +122,9 @@ def make_bed(root, lrg_number, strand, chromosome_number, genomic_start, genomic
     return(f)
 
 #This function will close the bed file and print a message telling the user the name of their file
-def close_file(output_time, lrg_number, gene, f):
+def close_file(output_time, lrg_number, gene, build, f):
     f.close()
-    message = "Your results are found in the %s%s%s%s%s.bed file" % (lrg_number,"_", gene, "_", output_time)
+    message = f"Your results are found in the {lrg_number}_{gene}_GRCh{build}_{output_time}.bed file"
     print(message)
     return(message)
 
@@ -139,9 +139,9 @@ def main():
     lrg_number = get_lrg_number(root)
     build =choose_genome_build()
     strand, chromosome_number, genomic_start, genomic_end = find_genomic_coord(root, build)
-    f = create_file(output_time, lrg_number, gene)
+    f = create_file(output_time, lrg_number, gene, build)
     f = make_bed(root, lrg_number, strand, chromosome_number, genomic_start, genomic_end, f)
-    message = close_file(output_time, lrg_number, gene, f)
+    message = close_file(output_time, lrg_number, gene, build, f)
 
 #This calls the main function
 if __name__ == '__main__':
