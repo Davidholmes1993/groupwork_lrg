@@ -26,8 +26,7 @@ name_of_file = str(args)
 if name_of_file.endswith(".xml')"):
     pass
 else:
-    print("ERROR: Invalid file type. File must have extension .xml")
-    exit()
+    raise ValueError('Invalid file type. File must have an .xml extension')
 
 # This uses argparse to open the file that the user has inputted
 with open(args.filename) as file:
