@@ -128,3 +128,21 @@ def close_file(output_time, lrg_number, gene, f):
     print(message)
     return(message)
 
+#This function will call all of the other functions so that the programme will run
+def main():
+    args = parse_lrg()
+    output_time = time()
+    check_1 = check_file_present(args)
+    check_2 = check_file_type(args)
+    file, root = find_root(args)
+    gene = find_gene(root)
+    lrg_number = get_lrg_number(root)
+    build =choose_genome_build()
+    strand, chromosome_number, genomic_start, genomic_end = find_genomic_coord(root, build)
+    f = create_file(output_time, lrg_number, gene)
+    f = make_bed(root, lrg_number, strand, chromosome_number, genomic_start, genomic_end, f)
+    message = close_file(output_time, lrg_number, gene, f)
+
+#This calls the main function
+if __name__ == '__main__':
+    main()
