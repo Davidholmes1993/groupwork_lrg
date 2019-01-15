@@ -44,7 +44,7 @@ with open(args.filename) as file:
 for id in root.iter('id'):
     lrg_number= id.text
 f = open("%s%s%s%s%s.bed" % (lrg_number,"_", gene, "_", output_time),"w+")
-f.write("Chrom" + "\t" "ChromStart" + "\t" + "ChromEnd" + "\t" "Exon" + "\t" + "Strand" + "\n")
+f.write("chrom" + "\t" "chromStart" + "\t" + "chromEnd" + "\t" "name" + "\t" + "strand" + "\n")
 
 
 # This will find the genomic coordinates for the whole gene to be used later on to
