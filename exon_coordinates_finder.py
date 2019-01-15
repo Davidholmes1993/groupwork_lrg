@@ -35,15 +35,15 @@ def check_file_type(args):
     else:
         raise ValueError('Invalid file type. File must have an .xml extension')
 
-# This uses argparse to open the file that the user has inputted
-with open(args.filename) as file:
+#This function opens the file using argparse and then find the root needed to parse the xml file
+def find_root(args):
+    with open(args.filename) as file:
+        tree = ET.parse(file)
+        root = tree.getroot()
+    return(file, root, gene)
 
-# This defines the HGNC name of the gene to be used in the output filename
-    tree = ET.parse(file)
-    root = tree.getroot()
     for lrg_locus in root.iter('lrg_locus'):
         gene = lrg_locus.text
-
 # This specifies the LRG number to be used in the output filename
 for id in root.iter('id'):
     lrg_number= id.text
