@@ -26,14 +26,14 @@ def check_file_present(args):
         print("ERROR: This file does not exist in this directory" + "\n"  + "Please make sure your file is saved in groupwork_lrg directory")
         exit()
 
-# Puts args into string format so that file extension can be tested
-name_of_file = str(args)
-
-# If statement that tests whether or not the the file type is .xml. If the file is not correct it will let the user know and terminate the programme
-if name_of_file.endswith(".xml')"):
-    pass
-else:
-    raise ValueError('Invalid file type. File must have an .xml extension')
+#This function tests whether or not the the file type is .xml. If the file is not correct it will let the user know and terminate the programme
+def check_file_type(args):
+    # Puts args into string format so that file extension can be tested
+    name_of_file = str(args)
+    if name_of_file.endswith(".xml')"):
+        pass
+    else:
+        raise ValueError('Invalid file type. File must have an .xml extension')
 
 # This uses argparse to open the file that the user has inputted
 with open(args.filename) as file:
