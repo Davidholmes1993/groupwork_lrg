@@ -7,14 +7,14 @@ import xml.etree.ElementTree as ET
 import argparse
 import datetime
 
-#This function uses the argparse module to define the XML file that the user has inputted
+"""This function uses the argparse module to define the XML file that the user has inputted"""
 def parse_lrg():
     parser = argparse.ArgumentParser()
     parser.add_argument('filename')
     args = parser.parse_args()
     return(args)
 
-#This function uses the datetime module to get the date and time of when the progaramme is used for use in the output filename
+"""This function uses the datetime module to get the date and time of when the progaramme is used for use in the output filename"""
 def time():
     output_time = datetime.datetime.now().strftime("%y-%m-%d-%H-%M")
     return(output_time)
@@ -30,35 +30,35 @@ def check_file_present(args):
         print("ERROR: This file does not exist in this directory" + "\n"  + "Please make sure your file is saved in groupwork_lrg directory")
         exit()
 
-#This function tests whether or not the the file type is .xml. If the file is not correct it will let the user know and terminate the programme
+"""This function tests whether or not the the file type is .xml.
+If the file is not correct it will let the user know and terminate the programme"""
 def check_file_type(args):
-    # Puts args into string format so that file extension can be tested
     name_of_file = str(args)
     if name_of_file.endswith(".xml')"):
         pass
     else:
         raise ValueError('Invalid file type. File must have an .xml extension')
 
-#This function opens the file using argparse and then find the root needed to parse the xml file
+"""This function opens the file using argparse and then find the root needed to parse the xml file"""
 def find_root(args):
     with open(args.filename) as file:
         tree = ET.parse(file)
         root = tree.getroot()
     return(file, root)
 
-#This function finds the HGNC name of the gene to be used in the output filename
+"""This function finds the HGNC name of the gene to be used in the output filename"""
 def find_gene(root):
     for lrg_locus in root.iter('lrg_locus'):
         gene = lrg_locus.text
     return(gene)
 
-#This function finds the LRG number to be used in the output filename
+"""This function finds the LRG number to be used in the output filename"""
 def get_lrg_number(root):
     for id in root.iter('id'):
         lrg_number= id.text
     return(lrg_number)
 
-#This function allows the user to choose whether they'd like their results in build GRCh37 or GRCh38
+"""This function allows the user to choose whether they'd like their results in build GRCh37 or GRCh38"""
 def choose_genome_build():
     build = input('\n' + 'Would you like the result in build GRCh37 or GRCh38? Please enter either 37 or 38 ')
     build = str(build)
@@ -97,7 +97,7 @@ def find_genomic_coord(root, build):
                 genomic_end = int(mapping.get("other_end"))
     return(strand, chromosome_number, genomic_start, genomic_end)
 
-#This function creates a .bed file with the filename of the lrg number, the gene and the date and time the file was created
+"""This function creates a .bed file with the filename of the lrg number, the gene and the date and time the file was created"""
 def create_file(output_time, lrg_number, gene, build):
     f = open("%s%s%s%s%s%s%s%s.bed" % (lrg_number,"_", gene, "_", "GRCh", build, "_", output_time),"w+")
     return(f)
@@ -127,14 +127,14 @@ def make_bed(root, lrg_number, strand, chromosome_number, genomic_start, genomic
             f.write("chr" + chromosome_number + "\t" + final_genomic_start + "\t" + final_genomic_end + "\t" + exon_number + "\t" + strand_definition + "\n")
     return(f)
 
-#This function will close the bed file and print a message telling the user the name of their file
+"""This function will close the bed file and print a message telling the user the name of their file"""
 def close_file(output_time, lrg_number, gene, build, f):
     f.close()
     message = ("Your results are found in the %s%s%s%s%s%s%s%s.bed file" % (lrg_number,"_", gene, "_", "GRCh", build, "_", output_time))
     print(message)
     return(message)
 
-#This function will call all of the other functions so that the programme will run
+"""This function will call all of the other functions so that the programme will run"""
 def main():
     args = parse_lrg()
     output_time = time()
@@ -149,6 +149,6 @@ def main():
     f = make_bed(root, lrg_number, strand, chromosome_number, genomic_start, genomic_end, f)
     message = close_file(output_time, lrg_number, gene, build, f)
 
-#This calls the main function
+"""This calls the main function"""
 if __name__ == '__main__':
     main()

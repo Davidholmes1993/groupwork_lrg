@@ -1,13 +1,7 @@
 <h1>LRG parser</h1>
 <h6>An LRG parser python program created by David Holmes and Maria Lock for the BIOL68400 Programming group work with the University of Manchester</h6>
 <h2>Purpose</h2>
-A python program to parse an XML file and output into a bed file the chromosome number, the start and end genomic coordinates for each exon <b>using the GRCh37 build</b>, the exon number and if it is a forward or reverse strand.
-
-<h2>Testing</h2>
-
-Run test file using pytest version 4.1.1
-
-	> pytest test_exon_coordinates_finder.py
+A python program to parse an XML file and output into a bed file the chromosome number, the start and end genomic coordinates for each exon, the exon number and if it is a forward or reverse strand. The user can select the coordinates using either genome build GRCh37 or GRCh38 when prompted.
 
 <h2>Usage</h2>
 Suitable for use with python 3. Requires the LRG xml file to be saved in the same local folder. See instructions below for detailed information
@@ -47,17 +41,17 @@ You will know the program is finished when it prints where to find the location 
 <h2>Example output</h2>
 
 ```
-Chrom   ChromStart      ChromEnd        Exon    Strand
-15      25650653        25650608        1       -
-15      25620910        25620612        2       -
-15      25616959        25615713        3       -
-15      25605674        25605530        4       -
-15      25602043        25601838        5       -
-15      25601203        25601039        6       -
-15      25599830        25599675        7       -
-15      25599573        25599500        8       -
-15      25585375        25585232        9       -
-15      25584404        25582396        10      -
+
+chr15      25650653        25650608        1       -
+chr15      25620910        25620612        2       -
+chr15      25616959        25615713        3       -
+chr15      25605674        25605530        4       -
+chr15      25602043        25601838        5       -
+chr15      25601203        25601039        6       -
+chr15      25599830        25599675        7       -
+chr15      25599573        25599500        8       -
+chr15      25585375        25585232        9       -
+chr15      25584404        25582396        10      -
 
 ```
 
@@ -79,3 +73,11 @@ This error message comes up if the file that you are trying to use the program
 with is not a .xml file, for example if you try and load a .fasta file instead.
 Please download the .xml file for your chosen LRG and save it in the same
 directory as the one from Github named groupwork_lrg
+
+<h2>Testing</h2>
+
+Run test file using pytest version 4.1.1
+
+`pip install -U pytest`
+
+`pytest test_exon_coordinates_finder.py`
