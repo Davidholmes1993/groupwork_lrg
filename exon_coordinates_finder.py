@@ -1,11 +1,14 @@
 # import etree module for parsing the xml file
+# import argparse
 import xml.etree.ElementTree as ET
-
-# import argparse. This defines the XML file that the user inputted
 import argparse
-parser = argparse.ArgumentParser()
-parser.add_argument('filename')
-args = parser.parse_args()
+
+#This function uses the argparse module to define the XML file that the user has inputted
+def parse_lrg():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('filename')
+    args = parser.parse_args()
+    return(args)
 
 # import datetime to enable the LRG parser program to give the date and time in the output filename
 import datetime
@@ -106,3 +109,9 @@ f.close()
 
 # A message is created to show the user where to find their results in the output file after the LRG parser program is finished.
 print("Your results are found in the %s%s%s%s%s.bed file" % (lrg_number,"_", gene, "_", output_time))
+
+def main():
+    args = parse_lrg()
+
+if __name__ == '__main__':
+    main()
