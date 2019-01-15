@@ -99,7 +99,7 @@ for exon in root.findall('.//fixed_annotation/transcript/exon'):
         final_genomic_end = str(genomic_end - exon_end +1)
         strand_definition = "-"
     if transcript_name == lrg_number:
-        f.write(chromosome_number + "\t" + final_genomic_start + "\t" + final_genomic_end + "\t" + exon_number + "\t" + strand_definition + "\n")
+        f.write("chr" + chromosome_number + "\t" + final_genomic_start + "\t" + final_genomic_end + "\t" + exon_number + "\t" + strand_definition + "\n")
 
 # The .bed file needs to be closed after creating it
 f.close()
