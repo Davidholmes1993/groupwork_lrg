@@ -54,15 +54,17 @@ def get_lrg_number(root):
         lrg_number= id.text
     return(lrg_number)
 
-# This allows the user to choose whether they'd like their results in build GRCh37 or GRCh38
-build = input('Would you like the result in build GRCh37 or GRCh38? Please enter either 37 or 38')
-build = str(build)
-if build == '37':
-    print('\n' + 'Your bed file is being created using build GRCh37')
-elif build == '38':
-    print('\n' + 'Your bed file is being created using build GRCh38')
-else:
-    raise ValueError('This build does not exist')
+#This function allows the user to choose whether they'd like their results in build GRCh37 or GRCh38
+def choose_genome_build():
+    build = input('Would you like the result in build GRCh37 or GRCh38? Please enter either 37 or 38')
+    build = str(build)
+    if build == '37':
+        print('\n' + 'Your bed file is being created using build GRCh37')
+    elif build == '38':
+        print('\n' + 'Your bed file is being created using build GRCh38')
+    else:
+        raise ValueError('This build does not exist')
+    return(build)
 
 # This will find the genomic coordinates for the whole gene to be used later on to
 # add or subtract the LRG coordinates in order to give the genomic coordinates of each exon.
