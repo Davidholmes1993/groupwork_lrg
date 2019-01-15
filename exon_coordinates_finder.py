@@ -48,9 +48,11 @@ def find_gene(root):
         gene = lrg_locus.text     
     return(gene)  
 
-# This specifies the LRG number to be used in the output filename
-for id in root.iter('id'):
-    lrg_number= id.text
+#This function finds the LRG number to be used in the output filename
+def get_lrg_number(root):
+    for id in root.iter('id'):
+        lrg_number= id.text
+    return(lrg_number)
 
 # This allows the user to choose whether they'd like their results in build GRCh37 or GRCh38
 build = input('Would you like the result in build GRCh37 or GRCh38? Please enter either 37 or 38')
