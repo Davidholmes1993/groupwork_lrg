@@ -1,6 +1,8 @@
-# import etree module for parsing the xml file
-# import argparse
-# import datetime
+"""
+import etree module for parsing the xml file
+import argparse
+import datetime
+"""
 import xml.etree.ElementTree as ET
 import argparse
 import datetime
@@ -17,8 +19,10 @@ def time():
     output_time = datetime.datetime.now().strftime("%y-%m-%d-%H-%M")
     return(output_time)
 
-#This function will test if the file is in the correct directory
-#If not it will tell the user and terminate the program
+"""
+This function will test if the file is in the correct directory
+If not it will tell the user and terminate the program
+"""
 def check_file_present(args):
     try:
         f = open(args.filename)
@@ -66,10 +70,12 @@ def choose_genome_build():
         raise ValueError('This build does not exist')
     return(build)
 
-#This function will find the genomic coordinates for the whole gene to be used later on to
-# add or subtract the LRG coordinates in order to give the genomic coordinates of each exon.
-# The chromosome number is identified, and the strand is identified as forward or reverse strand.
-# The coordinates are found for the genome build asked for by the user
+"""
+This function will find the genomic coordinates for the whole gene to be used later on to
+add or subtract the LRG coordinates in order to give the genomic coordinates of each exon.
+The chromosome number is identified, and the strand is identified as forward or reverse strand.
+The coordinates are found for the genome build asked for by the user
+"""
 def find_genomic_coord(root, build):
     if build == '37':
         for mapping in root.findall('.//updatable_annotation/annotation_set/mapping'):
@@ -96,10 +102,12 @@ def create_file(output_time, lrg_number, gene, build):
     f = open("%s%s%s%s%s%s%s%s.bed" % (lrg_number,"_", gene, "_", "GRCh", build, "_", output_time),"w+")
     return(f)
 
-# This function identifies the transcript name and only uses the default transcript that matches the LRG name,
-# The exon number is identified
-# As well as the start and end genomic coordinates for each exon, depending on if it is a forward or reverse strand
-# by adding or subtracting the LRG exon coordinates to/from the genomic coordinates of the whole gene
+"""
+This function identifies the transcript name and only uses the default transcript that matches the LRG name,
+The exon number is identified
+As well as the start and end genomic coordinates for each exon, depending on if it is a forward or reverse strand
+by adding or subtracting the LRG exon coordinates to/from the genomic coordinates of the whole gene
+"""
 def make_bed(root, lrg_number, strand, chromosome_number, genomic_start, genomic_end, f):
     for exon in root.findall('.//fixed_annotation/transcript/exon'):
         exon_number = exon.get('label')
