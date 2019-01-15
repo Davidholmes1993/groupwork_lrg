@@ -26,8 +26,7 @@ name_of_file = str(args)
 if name_of_file.endswith(".xml')"):
     pass
 else:
-    print("ERROR: Invalid file type. File must have extension .xml")
-    exit()
+    raise ValueError('Invalid file type. File must have an .xml extension')
 
 # This uses argparse to open the file that the user has inputted
 with open(args.filename) as file:
@@ -39,26 +38,47 @@ with open(args.filename) as file:
         gene = lrg_locus.text
 
 # This specifies the LRG number to be used in the output filename
-# And creates a .bed file with the filename of the lrg number, the gene and the date and time the file was created
-# A header row is created for the bed file to label each column
 for id in root.iter('id'):
     lrg_number= id.text
-f = open("%s%s%s%s%s.bed" % (lrg_number,"_", gene, "_", output_time),"w+")
-f.write("chrom" + "\t" "chromStart" + "\t" + "chromEnd" + "\t" "name" + "\t" + "strand" + "\n")
 
+# This allows the user to choose whether they'd like their results in build GRCh37 or GRCh38
+build = input('Would you like the result in build GRCh37 or GRCh38? Please enter either 37 or 38')
+build = str(build)
+if build == '37':
+    print('\n' + 'Your bed file is being created using build GRCh37')
+elif build == '38':
+    print('\n' + 'Your bed file is being created using build GRCh38')
+else:
+    raise ValueError('This build does not exist')
 
 # This will find the genomic coordinates for the whole gene to be used later on to
 # add or subtract the LRG coordinates in order to give the genomic coordinates of each exon.
 # The chromosome number is identified, and the strand is identified as forward or reverse strand.
-# The coordinates are found only for the genome build GRCh37.p13
-for mapping in root.findall('.//updatable_annotation/annotation_set/mapping'):
-    genome_build = mapping.get("coord_system")
-    mapping_span = mapping.find('mapping_span').attrib
-    if genome_build == "GRCh37.p13":
-        strand = mapping_span.get('strand')
-        chromosome_number = mapping.get("other_name")
-        genomic_start = int(mapping.get("other_start"))
-        genomic_end = int(mapping.get("other_end"))
+# The coordinates are found for the genome build asked for by the user
+if build == '37':    
+    for mapping in root.findall('.//updatable_annotation/annotation_set/mapping'):
+        genome_build = mapping.get("coord_system")
+        mapping_span = mapping.find('mapping_span').attrib
+        if genome_build == "GRCh37.p13":
+            strand = mapping_span.get('strand')
+            chromosome_number = mapping.get("other_name")
+            genomic_start = int(mapping.get("other_start"))
+            genomic_end = int(mapping.get("other_end"))
+elif build == '38':    
+    for mapping in root.findall('.//updatable_annotation/annotation_set/mapping'):
+        genome_build = mapping.get("coord_system")
+        mapping_span = mapping.find('mapping_span').attrib
+        if genome_build == "GRCh38.p12":
+            strand = mapping_span.get('strand')
+            chromosome_number = mapping.get("other_name")
+            genomic_start = int(mapping.get("other_start"))
+            genomic_end = int(mapping.get("other_end"))
+
+# This creates a .bed file with the filename of the lrg number, the gene and the date and time the file was created
+# A header row is created for the bed file to label each column
+f = open("%s%s%s%s%s.bed" % (lrg_number,"_", gene, "_", output_time),"w+")
+f.write("Chrom" + "\t" "ChromStart" + "\t" + "ChromEnd" + "\t" "Exon" + "\t" + "Strand" + "\n")
+
 
 # This loop identifies the transcript name and only uses the default transcript that matches the LRG name,
 # The exon number is identified
