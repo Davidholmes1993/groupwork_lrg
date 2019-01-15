@@ -98,26 +98,28 @@ def create_file(output_time, lrg_number, gene):
     f.write("Chrom" + "\t" "ChromStart" + "\t" + "ChromEnd" + "\t" "Exon" + "\t" + "Strand" + "\n")
     return(f)
 
-# This loop identifies the transcript name and only uses the default transcript that matches the LRG name,
+# This function identifies the transcript name and only uses the default transcript that matches the LRG name,
 # The exon number is identified
 # As well as the start and end genomic coordinates for each exon, depending on if it is a forward or reverse strand
 # by adding or subtracting the LRG exon coordinates to/from the genomic coordinates of the whole gene
-for exon in root.findall('.//fixed_annotation/transcript/exon'):
-    exon_number = exon.get('label')
-    coordinates = exon.find('coordinates').attrib
-    transcript_name = coordinates.get("coord_system")
-    exon_start = int(coordinates.get('start'))
-    exon_end = int(coordinates.get('end'))
-    if strand == '1':
-        final_genomic_start = str(genomic_start + exon_start -1)
-        final_genomic_end = str(genomic_start + exon_end -1)
-        strand_definition = "+"
-    elif strand =='-1':
-        final_genomic_start = str(genomic_end - exon_start +1)
-        final_genomic_end = str(genomic_end - exon_end +1)
-        strand_definition = "-"
-    if transcript_name == lrg_number:
-        f.write(chromosome_number + "\t" + final_genomic_start + "\t" + final_genomic_end + "\t" + exon_number + "\t" + strand_definition + "\n")
+def make_bed(root, lrg_number, strand, chromosome_number, genomic_start, genomic_end, f):
+    for exon in root.findall('.//fixed_annotation/transcript/exon'):
+        exon_number = exon.get('label')
+        coordinates = exon.find('coordinates').attrib
+        transcript_name = coordinates.get("coord_system")
+        exon_start = int(coordinates.get('start'))
+        exon_end = int(coordinates.get('end'))
+        if strand == '1':
+            final_genomic_start = str(genomic_start + exon_start -1)
+            final_genomic_end = str(genomic_start + exon_end -1)
+            strand_definition = "+"
+        elif strand =='-1':
+            final_genomic_start = str(genomic_end - exon_start +1)
+            final_genomic_end = str(genomic_end - exon_end +1)
+            strand_definition = "-"
+        if transcript_name == lrg_number:
+            f.write(chromosome_number + "\t" + final_genomic_start + "\t" + final_genomic_end + "\t" + exon_number + "\t" + strand_definition + "\n")
+    return(f)
 
 # The .bed file needs to be closed after creating it
 f.close()
