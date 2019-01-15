@@ -45,8 +45,8 @@ def find_root(args):
 #This function finds the HGNC name of the gene to be used in the output filename
 def find_gene(root):
     for lrg_locus in root.iter('lrg_locus'):
-        gene = lrg_locus.text     
-    return(gene)  
+        gene = lrg_locus.text
+    return(gene)
 
 #This function finds the LRG number to be used in the output filename
 def get_lrg_number(root):
@@ -71,7 +71,7 @@ def choose_genome_build():
 # The chromosome number is identified, and the strand is identified as forward or reverse strand.
 # The coordinates are found for the genome build asked for by the user
 def find_genomic_coord(root, build):
-    if build == '37':    
+    if build == '37':
         for mapping in root.findall('.//updatable_annotation/annotation_set/mapping'):
             genome_build = mapping.get("coord_system")
             mapping_span = mapping.find('mapping_span').attrib
@@ -80,7 +80,7 @@ def find_genomic_coord(root, build):
                 chromosome_number = mapping.get("other_name")
                 genomic_start = int(mapping.get("other_start"))
                 genomic_end = int(mapping.get("other_end"))
-    elif build == '38':    
+    elif build == '38':
         for mapping in root.findall('.//updatable_annotation/annotation_set/mapping'):
             genome_build = mapping.get("coord_system")
             mapping_span = mapping.find('mapping_span').attrib
@@ -93,14 +93,13 @@ def find_genomic_coord(root, build):
 
 #This function creates a .bed file with the filename of the lrg number, the gene and the date and time the file was created
 def create_file(output_time, lrg_number, gene, build):
-    f = open(f"{lrg_number}_{gene}_GRCh{build}_{output_time}.bed","w+")
+    f = open("%s%s%s%s%s%s%s%s.bed" % (lrg_number,"_", gene, "_", "GRCh", build, "_", output_time),"w+")
     return(f)
 
 # This function identifies the transcript name and only uses the default transcript that matches the LRG name,
 # The exon number is identified
 # As well as the start and end genomic coordinates for each exon, depending on if it is a forward or reverse strand
 # by adding or subtracting the LRG exon coordinates to/from the genomic coordinates of the whole gene
-
 def make_bed(root, lrg_number, strand, chromosome_number, genomic_start, genomic_end, f):
     for exon in root.findall('.//fixed_annotation/transcript/exon'):
         exon_number = exon.get('label')
@@ -123,7 +122,7 @@ def make_bed(root, lrg_number, strand, chromosome_number, genomic_start, genomic
 #This function will close the bed file and print a message telling the user the name of their file
 def close_file(output_time, lrg_number, gene, build, f):
     f.close()
-    message = f"Your results are found in the {lrg_number}_{gene}_GRCh{build}_{output_time}.bed file"
+    message = ("Your results are found in the %s%s%s%s%s%s%s%s.bed file" % (lrg_number,"_", gene, "_", "GRCh", build, "_", output_time))
     print(message)
     return(message)
 
