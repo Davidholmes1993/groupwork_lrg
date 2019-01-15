@@ -70,24 +70,26 @@ def choose_genome_build():
 # add or subtract the LRG coordinates in order to give the genomic coordinates of each exon.
 # The chromosome number is identified, and the strand is identified as forward or reverse strand.
 # The coordinates are found for the genome build asked for by the user
-if build == '37':    
-    for mapping in root.findall('.//updatable_annotation/annotation_set/mapping'):
-        genome_build = mapping.get("coord_system")
-        mapping_span = mapping.find('mapping_span').attrib
-        if genome_build == "GRCh37.p13":
-            strand = mapping_span.get('strand')
-            chromosome_number = mapping.get("other_name")
-            genomic_start = int(mapping.get("other_start"))
-            genomic_end = int(mapping.get("other_end"))
-elif build == '38':    
-    for mapping in root.findall('.//updatable_annotation/annotation_set/mapping'):
-        genome_build = mapping.get("coord_system")
-        mapping_span = mapping.find('mapping_span').attrib
-        if genome_build == "GRCh38.p12":
-            strand = mapping_span.get('strand')
-            chromosome_number = mapping.get("other_name")
-            genomic_start = int(mapping.get("other_start"))
-            genomic_end = int(mapping.get("other_end"))
+def find_genomic_coord(root, build):
+    if build == '37':    
+        for mapping in root.findall('.//updatable_annotation/annotation_set/mapping'):
+            genome_build = mapping.get("coord_system")
+            mapping_span = mapping.find('mapping_span').attrib
+            if genome_build == "GRCh37.p13":
+                strand = mapping_span.get('strand')
+                chromosome_number = mapping.get("other_name")
+                genomic_start = int(mapping.get("other_start"))
+                genomic_end = int(mapping.get("other_end"))
+    elif build == '38':    
+        for mapping in root.findall('.//updatable_annotation/annotation_set/mapping'):
+            genome_build = mapping.get("coord_system")
+            mapping_span = mapping.find('mapping_span').attrib
+            if genome_build == "GRCh38.p12":
+                strand = mapping_span.get('strand')
+                chromosome_number = mapping.get("other_name")
+                genomic_start = int(mapping.get("other_start"))
+                genomic_end = int(mapping.get("other_end"))
+    return(strand, chromosome_number, genomic_start, genomic_end)
 
 # This creates a .bed file with the filename of the lrg number, the gene and the date and time the file was created
 # A header row is created for the bed file to label each column
