@@ -56,12 +56,12 @@ def get_lrg_number(root):
 
 #This function allows the user to choose whether they'd like their results in build GRCh37 or GRCh38
 def choose_genome_build():
-    build = input('Would you like the result in build GRCh37 or GRCh38? Please enter either 37 or 38')
+    build = input('\n' + 'Would you like the result in build GRCh37 or GRCh38? Please enter either 37 or 38 ')
     build = str(build)
     if build == '37':
-        print('\n' + 'Your bed file is being created using build GRCh37')
+        print('\n' + 'Your bed file is being created using build GRCh37' + '\n')
     elif build == '38':
-        print('\n' + 'Your bed file is being created using build GRCh38')
+        print('\n' + 'Your bed file is being created using build GRCh38' + '\n')
     else:
         raise ValueError('This build does not exist')
     return(build)
