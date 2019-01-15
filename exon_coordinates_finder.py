@@ -40,10 +40,14 @@ def find_root(args):
     with open(args.filename) as file:
         tree = ET.parse(file)
         root = tree.getroot()
-    return(file, root, gene)
+    return(file, root)
 
+#This function finds the HGNC name of the gene to be used in the output filename
+def find_gene(root):
     for lrg_locus in root.iter('lrg_locus'):
-        gene = lrg_locus.text
+        gene = lrg_locus.text     
+    return(gene)  
+
 # This specifies the LRG number to be used in the output filename
 for id in root.iter('id'):
     lrg_number= id.text
