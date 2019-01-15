@@ -1,7 +1,9 @@
 # import etree module for parsing the xml file
 # import argparse
+# import datetime
 import xml.etree.ElementTree as ET
 import argparse
+import datetime
 
 #This function uses the argparse module to define the XML file that the user has inputted
 def parse_lrg():
@@ -10,9 +12,10 @@ def parse_lrg():
     args = parser.parse_args()
     return(args)
 
-# import datetime to enable the LRG parser program to give the date and time in the output filename
-import datetime
-output_time = datetime.datetime.now().strftime("%y-%m-%d-%H-%M")
+#This function uses the datetime module to get the date and time of when the progaramme is used for use in the output filename
+def time():
+    output_time = datetime.datetime.now().strftime("%y-%m-%d-%H-%M")
+    return(output_time)
 
 # A test to check if the file is in the correct directory
 #If not it will tell the user and terminate the program
