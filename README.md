@@ -36,7 +36,7 @@ genes to see what is the correct format for the output file of your chosen
 LRG xml file.
 
 You will know the program is finished when it prints where to find the location of your results on the command line, for example:
-`Your results are found in the LRG_1_COL1A1_19-01-08-15-01.bed file`
+`Your results are found in the LRG_1_COL1A1_GRCh37_19-01-15-15-10.bed file`
 
 <h2>Example output</h2>
 
