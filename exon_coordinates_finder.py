@@ -97,7 +97,7 @@ def find_genomic_coord(root, build):
                 genomic_end = int(mapping.get("other_end"))
     return(strand, chromosome_number, genomic_start, genomic_end)
 
-"""This function creates a .bed file with the filename of the lrg number, the gene and the date and time the file was created"""
+"""This function creates a .bed file with the filename of the lrg number, the gene, the genome build used and the date and time the file was created"""
 def create_file(output_time, lrg_number, gene, build):
     f = open("%s%s%s%s%s%s%s%s.bed" % (lrg_number,"_", gene, "_", "GRCh", build, "_", output_time),"w+")
     return(f)
