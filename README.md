@@ -4,7 +4,7 @@
 A python program to parse an XML file and output into a bed file the chromosome number, the start and end genomic coordinates for each exon, the exon number and if it is a forward or reverse strand. The user can select the coordinates using either genome build GRCh37 or GRCh38 when prompted.
 
 <h2>Usage</h2>
-Suitable for use with python 3.5 Requires the LRG xml file to be saved in the same local folder. See instructions below for detailed information
+Suitable for use with python 3.5. See instructions below for detailed information
 
 Example: `python exon_coordinates_finder.py <your LRG_*.xml file here>`
 <h2>Instructions</h2>
@@ -75,8 +75,8 @@ Please download the .xml file for your chosen LRG and save it in the same
 directory as the one from Github named groupwork_lrg
 
 <h2>Testing</h2>
+Unit testing for functions from the exon_coordinates_finder.py program can be performed by running the test file using pytest version 4.1.1
 
-Run test file using pytest version 4.1.1
 
 `pip install -U pytest`
 
